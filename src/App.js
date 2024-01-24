@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 
 function App() {
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [data, setData] = useState(null);
   const [isAuthenticated, setAuthenticated] = useState(false);
@@ -12,7 +12,7 @@ function App() {
       const response = await fetch('http://localhost:3001/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({ username, password })
       });
       
       if (!response.ok) {
@@ -36,7 +36,7 @@ function App() {
   const fetchData = async () => {
     try {
       const token = localStorage.getItem('access_token');
-      const response = await fetch('http://localhost:3002/data', {
+      const response = await fetch('http://localhost:3002/secret-data', {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -65,7 +65,7 @@ function App() {
             <button onClick={handleLogout}>Logout</button>
           </> :
           (<div className="login-container">
-            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" className="input-field" />
+            <input type="email" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" className="input-field" />
             <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" className="input-field" />
             <button onClick={handleLogin} className="login-button">Login</button>
           </div>)
