@@ -36,7 +36,7 @@ function App() {
   const fetchData = async () => {
     try {
       const token = localStorage.getItem('access_token');
-      const response = await fetch('http://localhost:3002/secret-data', {
+      const response = await fetch('http://localhost:3002/data', {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -56,6 +56,7 @@ function App() {
     }
   };
 
+  
   return (
     <div className="App">
       <header className="App-header">
