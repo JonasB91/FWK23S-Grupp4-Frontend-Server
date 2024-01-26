@@ -25,6 +25,8 @@ function App() {
 
       const result = await response.json();
       localStorage.setItem('access_token', result.token);
+      setUsername ('');
+      setPassword ('');
       setAuthenticated(true);
     } catch (error) {
       alert(error.message || 'Login failed!');
@@ -40,12 +42,12 @@ function App() {
   const fetchData = async () => {
     try {
       const token = localStorage.getItem('access_token');
-      const response = await fetch('http://localhost:3002/data', {
-        headers: { Authorization: `Bearer ${token}`,
-       },
-       credentials: 'include',
+      const response = await fetch('http://localhost:3002/data', 
+      {
+        headers: { Authorization: `Bearer ${token}`},
+        credentials: 'include'
       });
-      
+    
       if (!response.ok) {
         if (response.status === 401) {  // Unauthorized
           handleLogout();
@@ -61,7 +63,6 @@ function App() {
       alert(error.message || 'Failed to fetch data');
     }
   };
-
   
   return (
     <div className="App">
