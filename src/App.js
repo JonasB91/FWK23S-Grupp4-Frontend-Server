@@ -8,6 +8,7 @@ function App() {
   const [isAuthenticated, setAuthenticated] = useState(false);
 
   const handleLogin = async () => {
+
     try {
       const response = await fetch('http://localhost:3001/auth/login', {
         method: 'POST',
