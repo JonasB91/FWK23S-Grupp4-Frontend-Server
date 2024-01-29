@@ -25,6 +25,8 @@ function App() {
 
       const result = await response.json();
       localStorage.setItem('access_token', result.token);
+      setUsername ('');
+      setPassword ('');
       setAuthenticated(true);
     } catch (error) {
       alert(error.message || 'Login failed!');
@@ -45,7 +47,7 @@ function App() {
        },
        credentials: 'include', // skickar med cookies
       });
-      
+    
       if (!response.ok) {
         if (response.status === 401) {  // Unauthorized
           handleLogout();
@@ -61,7 +63,6 @@ function App() {
       alert(error.message || 'Failed to fetch data');
     }
   };
-
   
   return (
     <div className="App">
