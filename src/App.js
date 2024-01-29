@@ -43,7 +43,7 @@ function App() {
       const response = await fetch('http://localhost:3002/data', {
         headers: { Authorization: `Bearer ${token}`,
        },
-       credentials: 'include',
+       credentials: 'include', // skickar med cookies
       });
       
       if (!response.ok) {
