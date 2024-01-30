@@ -4,8 +4,35 @@ import './App.css';
 function App() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [registerUsername, setRegisterUsername] = useState('');
+  const [registerPassword, setRegisterPassword] = useState('');
   const [data, setData] = useState(null);
   const [isAuthenticated, setAuthenticated] = useState(false);
+
+    // Register Handler för att registrera användare..
+    const handleRegister = async () => {
+      try {
+        const response = await fetch('http://localhost:3001/auth/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            username: registerUsername,
+            password: registerPassword,
+          }),
+        });
+  
+        if (!response.ok) {
+          throw new Error('Failed to register user');
+        }
+  
+        const result = await response.json();
+        console.log(result.message);
+      } catch (error) {
+        alert(error.message || 'Failed to register user');
+      }
+    };
 
   const handleLogin = async () => {
 
@@ -77,6 +104,10 @@ function App() {
             <input type="email" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" className="input-field" />
             <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" className="input-field" />
             <button onClick={handleLogin} className="login-button">Login</button>
+        
+            <input type="email" value={registerUsername} onChange={(e) => setRegisterUsername(e.target.value)} placeholder="Register Username" className="input-field" />
+            <input type="password" value={registerPassword} onChange={(e) => setRegisterPassword(e.target.value)} placeholder="Register Password" className="input-field" />
+            <button onClick={handleRegister} className="register-button">Register</button>
           </div>)
         }
       </header>
