@@ -1,70 +1,20 @@
-# Getting Started with Create React App
+Hur man startar projektet:
+Börja med att öppna projektet med att skriva npm install och npm start i bash.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Frågeställningar som vi har tagit ställning till:
+* Ska JSON Web Tokens (JWT) användas för auktorisering?
+* Bör token lagras i local storage, eller ska man använda session-ID och hämta JWT från backend?
+* Ska JWT-lösenordet propageras för att möjliggöra verifiering i varje backend, eller används metoder i auth-servern för autentisering?
+* Hur ska man hantera token-förnyelse och utgångstider för att upprätthålla säkerheten och användarvänligheten?
+* Vilka säkerhetsmekanismer bör implementeras för att skydda mot Cross-Site Scripting (XSS) och Cross-Site Request Forgery (CSRF)?
+* Hur implementeras säker lagring och hantering av känslig användarinformation i enlighet med GDPR?
+* Vilka strategier bör användas för att säkerställa säker datakommunikation mellan frontend, auth-server och backend?
+* Hur balanseras behovet av stark säkerhet med en smidig och användarvänlig inloggningsprocess?
+* På vilket sätt ska systemet hantera olika användarroller och deras åtkomstnivåer?
+* Skall  ramverk användas (passport, jwt, ...) eller skall egenutvecklar kod användas.
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Det här har vi lagt till för att det ska bli säkert:
+Vi har gjort så att användarnamn och lösenord försvinner när man loggar ut.
+Frontend server skickar med cookies.
+Den tittar så att användaren är autentiserad.
+Vi har valt att använda användarnamn istället för email.
