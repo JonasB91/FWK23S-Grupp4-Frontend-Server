@@ -4,13 +4,11 @@ import './App.css';
 function App() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [registerUsername, setRegisterUsername] = useState('');
-  const [registerPassword, setRegisterPassword] = useState('');
   const [data, setData] = useState(null);
   const [isAuthenticated, setAuthenticated] = useState(false);
 
     // Register Handler för att registrera användare..
-    const handleRegister = async () => {
+      const handleRegister = async () => {
       try {
         const response = await fetch('http://localhost:3001/auth/register', {
           method: 'POST',
@@ -18,8 +16,8 @@ function App() {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            username: registerUsername,
-            password: registerPassword,
+            username: username,
+            password: password,
           }),
         });
   
@@ -28,7 +26,7 @@ function App() {
         }
   
         const result = await response.json();
-        console.log(result.message);
+        alert(result.message)
       } catch (error) {
         alert(error.message || 'Failed to register user');
       }
@@ -46,6 +44,8 @@ function App() {
         body: JSON.stringify({ username, password }),
       });
       
+      console.log('Response Status:', response.status);
+
       if (!response.ok) {
         throw new Error('Login failed');
       }
@@ -101,12 +101,9 @@ function App() {
             <button onClick={handleLogout} id="logOut-button" >Logout</button>
           </> :
           (<div className="login-container">
-            <input type="email" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" className="input-field" />
+            <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" className="input-field" />
             <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" className="input-field" />
             <button onClick={handleLogin} className="login-button">Login</button>
-        
-            <input type="email" value={registerUsername} onChange={(e) => setRegisterUsername(e.target.value)} placeholder="Register Username" className="input-field" />
-            <input type="password" value={registerPassword} onChange={(e) => setRegisterPassword(e.target.value)} placeholder="Register Password" className="input-field" />
             <button onClick={handleRegister} className="register-button">Register</button>
           </div>)
         }
